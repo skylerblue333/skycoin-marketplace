@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: ${DATABASE_URL}
+      JWT_SECRET: ${JWT_SECRET}
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+
+  # Optional: Database service
+  # db:
+  #   image: mysql:8
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: skycoin
+  #   volumes:
+  #     - db_data:/var/lib/mysql
+
+# volumes:
+#   db_data:
